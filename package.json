@@ -1,0 +1,23 @@
+{
+  "name": "lh",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "cypress:open": "cypress open",
+    "cypress:run": "rm -rf allure-results/* && cypress run --env allure=true",
+    "allure:report": "allure generate allure-results --clean -o allure-report"
+  
+    
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "mocha": "^10.2.0"
+  },
+  "devDependencies": {
+    "@shelex/cypress-allure-plugin": "^2.39.1",
+    "cypress": "^12.13.0"
+  }
+}
