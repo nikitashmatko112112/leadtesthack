@@ -17,7 +17,6 @@ describe("Страница авторизации пользователя", () 
   });
 
   it("Test 3:Авторизация на сайте при вводе невалидных данных", () => {
-    git;
     cy.get('[name="phone"]').type(9610000000);
     cy.get('[name = "password"]').type("Nikita113");
     cy.get("#auth-form-submit").click();
