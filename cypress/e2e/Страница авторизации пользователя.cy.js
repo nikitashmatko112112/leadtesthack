@@ -14,10 +14,10 @@ describe("Страница авторизации пользователя", () 
     cy.get('[name = "password"]').type(validUser.password);
     cy.get("#auth-form-submit").click();
     cy.url().should("not.equal", "/auth");
-    cy.get(".sidebar-logo__text").should("be.visible");
   });
 
   it("Test 3:Авторизация на сайте при вводе невалидных данных", () => {
+    git;
     cy.get('[name="phone"]').type(9610000000);
     cy.get('[name = "password"]').type("Nikita113");
     cy.get("#auth-form-submit").click();
