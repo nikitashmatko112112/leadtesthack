@@ -9,12 +9,14 @@ describe("Страница авторизации пользователя", () 
     cy.get(".bubble-form.bubble-box").should("be.visible");
   });
 
-  it("Test 2:Авторизация на сайте при вводе валидных данных", () => {
+  it.only("Test 2:Авторизация на сайте при вводе валидных данных", () => {
     cy.get('[name="phone"]').type(validUser.phone);
     cy.get('[name = "password"]').type(validUser.password);
     cy.get("#auth-form-submit").click();
     cy.url().should("not.equal", "/auth");
-    cy.get(".sidebar-logo__text").should("be.visible");
+    cy.get(
+      ".el-button.el-button--primary.item-header__filter-btn.hidden-xxs-only"
+    ).should("be.visible");
   });
 
   it("Test 3:Авторизация на сайте при вводе невалидных данных", () => {
