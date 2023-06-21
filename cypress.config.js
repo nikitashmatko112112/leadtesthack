@@ -8,9 +8,6 @@ module.exports = {
   env: {
     browser: "chrome",
   },
-  baseUrl: "https://example.com",
-  viewportWidth: 1280,
-  viewportHeight: 720,
   e2e: {
     baseUrl: "https://leadhack.ru",
     setupNodeEvents: function (on, config) {
