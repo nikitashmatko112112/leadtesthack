@@ -14,3 +14,4 @@ jobs:
           start: npm run cypress:run
           browser: chrome
           headed: false
+          record: false
