@@ -1,63 +1,42 @@
-name: e2e-tests
-
-on: push
-
+name: CI
+on: [push, pull_request]
 jobs:
-  cypress-run:
-    runs-on: ubuntu-latest
+  allure-report:
+    runs-on: ubuntu-22.04
     steps:
-      # Шаг 1: Клонирование репозитория
       - name: Checkout
         uses: actions/checkout@v3
-
-      # Шаг 2: Установка зависимостей
+      # Install npm dependencies, cache them correctly
       - name: Install dependencies
-        run: npm install
-
-      # Шаг 3: Запуск тестов с помощью Cypress
-      - name: Cypress run
         uses: cypress-io/github-action@v5
         with:
-          start: npm run cypress:run
-          browser: chrome
-          headed: false
-          record: false
-
-  allure-report:
-    needs: cypress-run
-    runs-on: ubuntu-latest
-    steps:
-      # Шаг 1: Установка Allure CLI
-      - name: Install Allure CLI
-        run: |
-          sudo apt-add-repository ppa:qameta/allure -y
-          sudo apt-get update -y
-          sudo apt-get install allure -y
+          runTests: false
+      - name: Run Cypress tests
+        continue-on-error: true
+        run: npm run cypress:run
       - name: Get Allure history
         uses: actions/checkout@v3
         if: always()
         continue-on-error: true
         with:
-          ref: gh-main
-          path: gh-main
+          ref: gh-pages
+          path: gh-pages
 
-      # Шаг 2: Генерация отчета Allure
       - name: Generate Allure report
         uses: simple-elf/allure-report-action@master
         if: always()
         id: allure-report
         with:
           allure_results: allure-results
-          gh_pages: gh-main
+          gh_pages: gh-pages
           allure_report: allure-report
           allure_history: allure-history
           keep_reports: 30
 
-      # Шаг 3: Публикация отчета на GitHub Pages
       - name: Deploy report to Github Pages
         if: always()
         uses: peaceiris/actions-gh-pages@v3
         with:
-          PERSONAL_TOKEN: ${{ secrets.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 }}
-          PUBLISH_BRANCH: gh-main
+          PERSONAL_TOKEN: ${{ secrets.ALLURE }}
+          PUBLISH_BRANCH: gh-pages
           PUBLISH_DIR: allure-history

@@ -6,9 +6,10 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "cypress:open": "cypress open",
-    "cypress:run": "rm -rf allure-results/* && cypress run --env allure=true",
-    "allure:report": "allure generate allure-results --clean -o allure-report"
-  
+    "cypress:run": "npx cypress run --config video=false --browser chrome --env allure=true",
+    "allure:clear": "rm -r allure-results/ allure-report cypress/screenshots cypress/videos || true",
+    "allure:report": "allure generate allure-results --clean -o allure-report && allure open allure-report",
+    "allure:history": "mv -f allure-report/history allure-results/history && rm -r allure-report || true"
     
   },
   "author": "",
