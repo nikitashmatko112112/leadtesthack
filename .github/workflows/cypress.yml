@@ -37,6 +37,6 @@ jobs:
         if: always()
         uses: peaceiris/actions-gh-pages@v3
         with:
-          PERSONAL_TOKEN: ${{ secrets.ALLURE }}
+          PERSONAL_TOKEN: ${{secrets.ALLURE_REPORT}}
           PUBLISH_BRANCH: gh-pages
           PUBLISH_DIR: allure-history
