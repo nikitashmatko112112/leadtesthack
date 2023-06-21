@@ -9,7 +9,7 @@ describe("Страница авторизации пользователя", () 
     cy.get(".bubble-form.bubble-box").should("be.visible");
   });
 
-  it.only("Test 2:Авторизация на сайте при вводе валидных данных", () => {
+  it("Test 2:Авторизация на сайте при вводе валидных данных", () => {
     cy.get('[name="phone"]').type(validUser.phone);
     cy.get('[name = "password"]').type(validUser.password);
     cy.get("#auth-form-submit").click();
